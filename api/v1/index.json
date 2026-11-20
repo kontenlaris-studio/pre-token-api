@@ -1,0 +1,21 @@
+{
+  "name": "Pre-Token Protocols API",
+  "version": "v1",
+  "snapshot_date": "2026-11-20",
+  "source": "DefiLlama protocols snapshot via the Pre-Token Protocols dataset (CC BY 4.0)",
+  "attribution": "Data: Kontenlaris Studio \u2014 Pre-Token Protocols dataset",
+  "count": 838,
+  "links": {
+    "analysis_app": "https://pre-token-screener.skillsafe.ai/",
+    "model_licensing": "https://kontenlaris-studio.github.io/engine-licensing/",
+    "cli": "https://github.com/kontenlaris-studio/kontenlaris-cli",
+    "dataset": "https://github.com/kontenlaris-studio/pre-token-protocols-dataset"
+  },
+  "endpoints": {
+    "all": "https://kontenlaris-studio.github.io/pre-token-api/api/v1/all.json",
+    "top50": "https://kontenlaris-studio.github.io/pre-token-api/api/v1/top.json",
+    "categories": "https://kontenlaris-studio.github.io/pre-token-api/api/v1/categories.json",
+    "by_category": "https://kontenlaris-studio.github.io/pre-token-api/api/v1/category/<slug>.json"
+  },
+  "usage": "Free for any use with attribution (CC BY 4.0). Static snapshot API \u2014 refresh follows dataset updates."
+}

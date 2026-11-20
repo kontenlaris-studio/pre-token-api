@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-Token Protocols API — Kontenlaris Studio</title>
+<meta name="description" content="Free static JSON API: 838 DeFi protocols with TVL over $1M that have no token yet. Snapshot 2026-11-20, CC BY 4.0.">
+<style>
+:root{--navy:#0a1931;--navy2:#12294d;--orange:#ff7a00;--ink:#14213d;--mut:#5a6b84;--line:#e3e9f2;--bg:#f6f8fb}
+*{box-sizing:border-box}body{margin:0;font:16px/1.6 system-ui,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:52px 20px 40px;text-align:center}
+.mark{width:56px;height:56px;border-radius:14px;background:var(--orange);color:var(--navy);font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+h1{margin:0 0 8px;font-size:30px}header p{color:#b9c7dd;max-width:660px;margin:0 auto}
+.wrap{max-width:880px;margin:0 auto;padding:26px 20px 60px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+code{background:#eef2f8;border-radius:6px;padding:2px 6px;font-size:14px;word-break:break-all}
+pre{background:var(--navy);color:#dbe6f5;border-radius:10px;padding:14px;overflow:auto;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:15px}td{border-bottom:1px solid var(--line);padding:7px 4px}
+.btn{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;font-weight:800;padding:10px 20px;border-radius:999px;margin:4px 4px 0 0}
+.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+footer{background:var(--navy);color:#b9c7dd;text-align:center;padding:22px;font-size:14px}footer a{color:#ffb066}
+</style></head><body>
+<header><div class="mark">KL</div><h1>838 protocols. No token yet. One free API.</h1>
+<p>Every DeFi protocol with TVL above $1M that has <b>not</b> launched a token — from the 20 Nov 2026 DefiLlama snapshot, served as static JSON. No key, no signup, CC BY 4.0.</p></header>
+<div class="wrap">
+<div class="card"><h2 style="margin-top:0">Endpoints</h2>
+<table>
+<tr><td><code>GET /api/v1/index.json</code></td><td>meta, endpoints, links</td></tr>
+<tr><td><code>GET /api/v1/all.json</code></td><td>all 838 protocols, TVL-sorted</td></tr>
+<tr><td><code>GET /api/v1/top.json</code></td><td>top 50 by TVL</td></tr>
+<tr><td><code>GET /api/v1/categories.json</code></td><td>53 categories with counts &amp; combined TVL</td></tr>
+<tr><td><code>GET /api/v1/category/&lt;slug&gt;.json</code></td><td>one category, e.g. <code>lending</code>, <code>dexs</code>, <code>bridge</code></td></tr>
+</table>
+<pre>curl https://kontenlaris-studio.github.io/pre-token-api/api/v1/top.json</pre>
+<p style="color:var(--mut)">Every payload carries a <code>meta</code> block: snapshot date, source, attribution and links. Fields: name, slug, category, tvl_usd, change_1d_pct, change_7d_pct, primary_chain, chain_count, url.</p></div>
+<div class="card"><h2 style="margin-top:0">Live — top 5 right now</h2><div id="live" style="color:var(--mut)">loading…</div></div>
+<div class="card"><h2 style="margin-top:0">Go deeper</h2>
+<p style="color:var(--mut)">The raw list is free. The analysis on top of it is the product:</p>
+<a class="btn" href="https://pre-token-screener.skillsafe.ai/">Token Radar screener app</a>
+<a class="btn ghost" href="https://kontenlaris-studio.github.io/engine-licensing/">License the scoring model</a>
+<a class="btn ghost" href="https://github.com/kontenlaris-studio/kontenlaris-cli">Query offline via the CLI</a>
+<a class="btn ghost" href="https://github.com/kontenlaris-studio/pre-token-protocols-dataset">Full dataset (CSV/JSONL)</a></div>
+</div>
+<footer>Kontenlaris Studio · Data CC BY 4.0 · Snapshot 2026-11-20 from DefiLlama</footer>
+<script>
+fetch('api/v1/top.json').then(r=>r.json()).then(d=>{
+document.getElementById('live').innerHTML='<table>'+d.data.slice(0,5).map(p=>'<tr><td>'+p.name+'</td><td>'+p.category+'</td><td style="text-align:right">$'+Math.round(p.tvl_usd).toLocaleString('en-US')+'</td></tr>').join('')+'</table>'})
+.catch(()=>{document.getElementById('live').textContent='(open over http to see live data)'});
+</script>
+</body></html>
